@@ -18,8 +18,7 @@ public class TabFragment extends Fragment {
     public static final String TITLE = "title";
     private String mTitle = "Defaut Value";
     private RecyclerView mRecyclerView;
-    // private TextView mTextView;
-    private List<String> mDatas = new ArrayList<String>();
+    private List<String> mDatas = new ArrayList<>();
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
