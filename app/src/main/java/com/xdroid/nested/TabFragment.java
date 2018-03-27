@@ -34,10 +34,8 @@ public class TabFragment extends Fragment {
                              Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_tab, container, false);
         mRecyclerView = (RecyclerView) view
-                .findViewById(R.id.id_stickynavlayout_innerscrollview);
+                .findViewById(R.id.scrollview);
         mRecyclerView.setLayoutManager(new LinearLayoutManager(getActivity()));
-        // mTextView = (TextView) view.findViewById(R.id.id_info);
-        // mTextView.setText(mTitle);
         for (int i = 0; i < 50; i++) {
             mDatas.add(mTitle + " -> " + i);
         }

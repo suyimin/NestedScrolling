@@ -247,12 +247,12 @@ public class StickyNavLayout extends LinearLayout implements NestedScrollingPare
     @Override
     protected void onFinishInflate() {
         super.onFinishInflate();
-        mTop = findViewById(R.id.id_stickynavlayout_topview);
-        mNav = findViewById(R.id.id_stickynavlayout_indicator);
-        View view = findViewById(R.id.id_stickynavlayout_viewpager);
+        mTop = findViewById(R.id.topview);
+        mNav = findViewById(R.id.indicator);
+        View view = findViewById(R.id.viewpager);
         if (!(view instanceof ViewPager)) {
             throw new RuntimeException(
-                    "id_stickynavlayout_viewpager show used by ViewPager !");
+                    "id viewpager show used by ViewPager !");
         }
         mViewPager = (ViewPager) view;
     }

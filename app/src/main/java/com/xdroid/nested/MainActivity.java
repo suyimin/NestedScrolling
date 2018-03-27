@@ -27,24 +27,9 @@ public class MainActivity extends FragmentActivity {
         initEvents();
     }
 
-    private void initEvents() {
-        mViewPager.setOnPageChangeListener(new OnPageChangeListener() {
-            @Override
-            public void onPageSelected(int position) {
-            }
-
-            @Override
-            public void onPageScrolled(int position, float positionOffset,
-                                       int positionOffsetPixels) {
-                mIndicator.scroll(position, positionOffset);
-            }
-
-            @Override
-            public void onPageScrollStateChanged(int state) {
-
-            }
-        });
-
+    private void initViews() {
+        mIndicator = (SimpleViewPagerIndicator) findViewById(R.id.indicator);
+        mViewPager = (ViewPager) findViewById(R.id.viewpager);
     }
 
     private void initDatas() {
@@ -78,19 +63,21 @@ public class MainActivity extends FragmentActivity {
         });
     }
 
-    private void initViews() {
-        mIndicator = (SimpleViewPagerIndicator) findViewById(R.id.id_stickynavlayout_indicator);
-        mViewPager = (ViewPager) findViewById(R.id.id_stickynavlayout_viewpager);
+    private void initEvents() {
+        mViewPager.setOnPageChangeListener(new OnPageChangeListener() {
+            @Override
+            public void onPageSelected(int position) {
+            }
 
-		/*
-        RelativeLayout ll = (RelativeLayout) findViewById(R.id.id_stickynavlayout_topview);
-		TextView tv = new TextView(this);
-		tv.setText("我的动态添加的");
-		tv.setBackgroundColor(0x77ff0000);
-		ll.addView(tv, new RelativeLayout.LayoutParams(
-				RelativeLayout.LayoutParams.MATCH_PARENT, 600));
-		*/
+            @Override
+            public void onPageScrolled(int position, float positionOffset, int positionOffsetPixels) {
+                mIndicator.scroll(position, positionOffset);
+            }
+
+            @Override
+            public void onPageScrollStateChanged(int state) {
+
+            }
+        });
     }
-
-
 }
