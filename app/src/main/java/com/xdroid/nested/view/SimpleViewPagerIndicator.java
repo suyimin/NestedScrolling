@@ -24,6 +24,8 @@ public class SimpleViewPagerIndicator extends LinearLayout {
     private Paint mPaint = new Paint();
     private int mTabWidth;
 
+    private OnIndClickListener listener;
+
     public SimpleViewPagerIndicator(Context context) {
         this(context, null);
     }
@@ -44,7 +46,6 @@ public class SimpleViewPagerIndicator extends LinearLayout {
         mTitles = titles;
         mTabCount = titles.length;
         generateTitleView();
-
     }
 
     public void setIndicatorColor(int indicatorColor) {
@@ -61,11 +62,6 @@ public class SimpleViewPagerIndicator extends LinearLayout {
     }
 
     public void scroll(int position, float offset) {
-        /**
-         * <pre>
-         *  0-1:position=0 ;1-0:postion=0;
-         * </pre>
-         */
         mTranslationX = getWidth() / mTabCount * (position + offset);
         invalidate();
     }
@@ -77,29 +73,38 @@ public class SimpleViewPagerIndicator extends LinearLayout {
     }
 
     private void generateTitleView() {
-        if (getChildCount() > 0)
+        if (getChildCount() > 0) {
             this.removeAllViews();
+        }
         int count = mTitles.length;
 
         setWeightSum(count);
         for (int i = 0; i < count; i++) {
             TextView tv = new TextView(getContext());
-            LayoutParams lp = new LayoutParams(0,
-                    LayoutParams.MATCH_PARENT);
+            LayoutParams lp = new LayoutParams(0, LayoutParams.MATCH_PARENT);
             lp.weight = 1;
             tv.setGravity(Gravity.CENTER);
             tv.setTextColor(COLOR_TEXT_NORMAL);
             tv.setText(mTitles[i]);
             tv.setTextSize(TypedValue.COMPLEX_UNIT_SP, 16);
             tv.setLayoutParams(lp);
+            tv.setTag(i);
+            final int finalI = i;
             tv.setOnClickListener(new OnClickListener() {
                 @Override
                 public void onClick(View v) {
-
+                    listener.onClick(finalI);
                 }
             });
             addView(tv);
         }
     }
 
+    public interface OnIndClickListener {
+        void onClick(int position);
+    }
+
+    public void setListener(OnIndClickListener listener) {
+        this.listener = listener;
+    }
 }

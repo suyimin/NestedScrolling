@@ -69,6 +69,13 @@ public class MainActivity extends FragmentActivity {
 
         mViewPager.setAdapter(mAdapter);
         mViewPager.setCurrentItem(0);
+
+        mIndicator.setListener(new SimpleViewPagerIndicator.OnIndClickListener() {
+            @Override
+            public void onClick(int position) {
+                mViewPager.setCurrentItem(position);
+            }
+        });
     }
 
     private void initViews() {
